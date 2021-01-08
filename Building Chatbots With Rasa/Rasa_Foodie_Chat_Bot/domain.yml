@@ -1,0 +1,143 @@
+actions:
+- action_default_ask_affirmation
+- action_default_ask_rephrase
+- action_exit
+- action_search_restaurants
+- action_slot_reset
+- action_slot_reset_location
+- get_location
+- get_mail
+- get_random_cuisine
+- mail_results
+- utter_ask_budget
+- utter_ask_cuisine
+- utter_ask_howcanhelp
+- utter_ask_location
+- utter_ask_rephrase
+- utter_ask_sendmail
+- utter_do_not_operate
+- utter_get_email
+- utter_goodbye
+- utter_greet
+- utter_respond_insult
+- utter_restart
+- utter_sent_email
+- validate_cuisine
+- validate_location
+- validate_price
+entities:
+- cuisine
+- email
+- emailid
+- location
+- price
+intents:
+- greet
+- restaurant_search
+- deny
+- goodbye:
+    triggers: utter_goodbye
+- email
+- affirm
+- insult:
+    triggers: utter_respond_insult
+- out_of_scope
+- exit:
+    triggers: action_exit
+responses:
+  utter_ask_budget:
+  - buttons:
+    - payload: Less than Rs.300
+      title: Less than Rs.300
+    - payload: Between Rs.300 and 700
+      title: Between Rs.300 and 700
+    - payload: More than Rs.700
+      title: More than Rs.700
+    text: What price range are you looking at?
+  utter_ask_cuisine:
+  - buttons:
+    - payload: Chinese
+      title: Chinese
+    - payload: Italian
+      title: Italian
+    - payload: South Indian
+      title: South Indian
+    - payload: North Indian
+      title: North Indian
+    - payload: Mexican
+      title: Mexican
+    - payload: American
+      title: American
+    text: "what kind of cuisine would you like? [Chinese | Italian | South Indian\
+      \ | North Indian | Mexican | American]\n"
+  utter_ask_howcanhelp:
+  - text: how can I help you?
+  utter_ask_location:
+  - text: In what location?
+  - text: which location?
+  utter_ask_rephrase:
+  - text: I didn't understand you, Can you please rephrase?
+  utter_ask_sendmail:
+  - buttons:
+    - payload: Yes
+      title: Yes
+    - payload: No
+      title: No
+    text: Do You need details of the top 10 restaurants on email?
+  utter_do_not_operate:
+  - text: Sorry, we don’t operate in this place yet. Can you please specify some other
+      location?
+    triggers: action_slot_reset_location
+  utter_get_email:
+  - text: Please provide email addresses
+  utter_goodbye:
+  - text: goodbye.
+  - text: Bye-bye
+  - text: Cya
+  - text: Bye!
+  utter_greet:
+  - text: Hey there! How may I help you?
+  - text: Hi, How can I help you?
+  - text: Hey, How is it going? How may I help you today?
+  - text: Hello, good to see you!
+  - text: Hi, How are you doing today?
+  - text: Hey, How can I help?
+  - text: Namaste! How can I help you?
+  utter_respond_insult:
+  - text: that's not very nice
+  utter_restart:
+  - text: Please visit us again
+  utter_sent_email:
+  - text: We have emailed you the list of restaurants.
+  - text: Please check your mailbox, your list of restaurants is ready to view.
+  - text: Sent. Bon Appetit!
+session_config:
+  carry_over_slots_to_new_session: true
+  session_expiration_time: 0
+slots:
+  csn_avl:
+    type: categorical
+    values:
+    - '1'
+    - '0'
+    - __other__
+  cuisine:
+    type: text
+  emailid:
+    type: text
+  loc_avl:
+    type: categorical
+    values:
+    - '1'
+    - '0'
+    - __other__
+  location:
+    type: text
+  prc_avl:
+    type: categorical
+    values:
+    - '1'
+    - '0'
+    - __other__
+  price:
+    type: text
